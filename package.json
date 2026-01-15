@@ -4,8 +4,6 @@
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
-    "start-web": "bunx rork start -p 9nz98ji2lcp917eg82b7e --web --tunnel",
-    "start-web-dev": "DEBUG=expo* bunx rork start -p 9nz98ji2lcp917eg82b7e --web --tunnel",
     "lint": "expo lint"
   },
   "dependencies": {
@@ -16,7 +14,7 @@
     "@stardazed/streams-text-encoding": "^1.0.2",
     "@tanstack/react-query": "^5.83.0",
     "@ungap/structured-clone": "^1.3.0",
-    "expo": "~53.0.22",
+    "expo": "^54.0.31",
     "expo-blur": "~14.1.4",
     "expo-constants": "~17.1.4",
     "expo-file-system": "~18.1.11",

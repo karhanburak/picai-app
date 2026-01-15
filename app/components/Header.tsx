@@ -5,8 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function Header() {
   return (
     <LinearGradient colors={['#667eea', '#764ba2']} style={styles.header}>
-      <Text style={styles.headerTitle}>Picai</Text>
-      <Text style={styles.headerSubtitle}>Transform your photos with AI</Text>
+      <Text style={styles.headerTitle}>Glint</Text>
     </LinearGradient>
   );
 }
@@ -14,9 +13,7 @@ export default function Header() {
 const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 20,
-    paddingVertical: 24,
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
+    paddingVertical: 16,
   },
   headerTitle: {
     fontSize: 28,

@@ -24,7 +24,11 @@ export default function ActionButtons({
   return (
     <View style={styles.actionButtons}>
       <TouchableOpacity
-        style={[styles.actionButton, styles.editButton]}
+        style={[
+          styles.actionButton,
+          styles.editButton,
+          (editMutationPending || !editPrompt.trim()) && styles.disabledButton,
+        ]}
         onPress={handleEdit}
         disabled={editMutationPending || !editPrompt.trim()}
       >
@@ -34,25 +38,29 @@ export default function ActionButtons({
           <Wand2 size={24} color="#FFFFFF" />
         )}
         <Text style={styles.actionButtonText}>
-          {editMutationPending ? 'Editing...' : 'Edit Photo'}
+          {editMutationPending ? 'Editing...' : 'Edit'}
         </Text>
       </TouchableOpacity>
-      {editedImage && (
-        <TouchableOpacity
-          style={[styles.actionButton, styles.saveButton]}
-          onPress={saveImage}
-          disabled={isSaving}
-        >
-          {isSaving ? (
-            <ActivityIndicator size="small" color="#FFFFFF" />
-          ) : (
-            <Download size={24} color="#FFFFFF" />
-          )}
-          <Text style={styles.actionButtonText}>
-            {isSaving ? 'Saving...' : 'Save Photo'}
-          </Text>
-        </TouchableOpacity>
-      )}
+
+      <TouchableOpacity
+        style={[
+          styles.actionButton,
+          styles.saveButton,
+          (!editedImage || isSaving) && styles.disabledButton,
+        ]}
+        onPress={saveImage}
+        disabled={!editedImage || isSaving}
+      >
+        {isSaving ? (
+          <ActivityIndicator size="small" color="#FFFFFF" />
+        ) : (
+          <Download size={24} color="#FFFFFF" />
+        )}
+        <Text style={styles.actionButtonText}>
+          {isSaving ? 'Saving...' : 'Save'}
+        </Text>
+      </TouchableOpacity>
+
       <TouchableOpacity
         style={[styles.actionButton, styles.resetButton]}
         onPress={resetEditor}
@@ -67,25 +75,36 @@ export default function ActionButtons({
 const styles = StyleSheet.create({
   actionButtons: {
     gap: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   actionButton: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 16,
+    padding: 16,
     borderRadius: 16,
     gap: 8,
   },
   editButton: {
     backgroundColor: '#667eea',
+    borderWidth: 2,
+    borderColor: '#667eea',
   },
   saveButton: {
     backgroundColor: '#10B981',
+    borderWidth: 2,
+    borderColor: '#09882158',
   },
   resetButton: {
     backgroundColor: '#FFFFFF',
     borderWidth: 2,
     borderColor: '#667eea',
+  },
+  disabledButton: {
+    opacity: 0.5,
   },
   actionButtonText: {
     fontSize: 16,
